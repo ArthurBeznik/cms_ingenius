@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Course 1",
+    "description": "Description of Course 1",
+    "modules": [1, 2]
+  },
+  {
+    "id": 2,
+    "title": "Course 2",
+    "description": "Description of Course 2",
+    "modules": [3]
+  }
+]
