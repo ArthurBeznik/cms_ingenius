@@ -28,6 +28,9 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml up --build -d
 
+      - name: List running containers
+        run: docker ps # This will show you the running containers
+
       - name: Run tests in Docker container
         run: |
           docker exec -t cms-ingenius-app-1 npm test
