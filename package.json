@@ -1,13 +1,12 @@
 {
   "name": "cms-ingenius",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev --respawn src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js",
-    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'"
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
