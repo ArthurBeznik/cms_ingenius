@@ -30,7 +30,7 @@ jobs:
 
       - name: Run tests in Docker container
         run: |
-          docker exec -t cms-ingenius_app_1 npm test
+          docker exec -t cms_ingenius_app_1 npm test
 
       - name: Shut down Docker containers
         run: docker-compose down
