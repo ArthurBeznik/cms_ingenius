@@ -36,8 +36,9 @@ app.use(unknownRoute);
 
 app.use(errorHandler);
 
-export const server = app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+export const server = app.listen(process.env.PORT || PORT, () => {
+  const port = process.env.PORT || PORT;
+  logger.info(`Server running on port ${port}`);
   logger.info(`Hello: ${BASE_URL}/api/hello`);
   logger.info(`Swagger API Documentation found at ${BASE_URL}/api-docs`);
 });

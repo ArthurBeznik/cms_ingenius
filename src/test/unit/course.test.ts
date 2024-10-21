@@ -9,6 +9,7 @@ import { readJSONFile, writeJSONFile } from "../../utils/fileUtils";
 import createError from "../../utils/error";
 import { Course } from "../../models/course";
 import { server } from "../../app";
+import { PORT } from "../../config/config";
 
 jest.mock("../../utils/fileUtils", () => ({
   readJSONFile: jest.fn(),
@@ -23,6 +24,11 @@ jest.mock("../../utils/error", () => ({
     return error;
   }),
 }));
+
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
 
 describe("CourseService", () => {
   const mockCourses: Course[] = [
@@ -48,6 +54,7 @@ describe("CourseService", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT || PORT}`);
       server.close();
     }
   });

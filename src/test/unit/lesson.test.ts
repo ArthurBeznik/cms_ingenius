@@ -10,7 +10,7 @@ import { Course } from "../../models/course";
 import { Lesson } from "../../models/lesson";
 import { getCourseById, getAllCourses } from "../../services/course.service";
 import createError from "../../utils/error";
-import { FILE_PATHS } from "../../config/config";
+import { FILE_PATHS, PORT } from "../../config/config";
 import { Module } from "../../models/module";
 import {
   getAllModules,
@@ -44,6 +44,11 @@ jest.mock("../../utils/error", () => ({
     return error;
   }),
 }));
+
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
 
 describe("LessonService", () => {
   const mockLessons: Lesson[] = [
@@ -124,6 +129,7 @@ describe("LessonService", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT || PORT}`);
       server.close();
     }
   });

@@ -3,8 +3,14 @@ import app, { server } from "../../app";
 import * as lessonService from "../../services/lesson.service";
 import { Lesson } from "../../models/lesson";
 import createError from "../../utils/error";
+import { PORT } from "../../config/config";
 
 jest.mock("../../services/lesson.service");
+
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
 
 describe("Lesson Routes", () => {
   beforeEach(() => {
@@ -13,6 +19,7 @@ describe("Lesson Routes", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT || PORT}`);
       server.close();
     }
   });

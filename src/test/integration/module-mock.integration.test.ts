@@ -6,6 +6,11 @@ import createError from "../../utils/error";
 
 jest.mock("../../services/module.service");
 
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
+
 describe("Module Routes", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -13,6 +18,7 @@ describe("Module Routes", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT}`);
       server.close();
     }
   });

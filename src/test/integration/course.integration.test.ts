@@ -21,13 +21,19 @@ jest.mock("../../utils/error", () => ({
   }),
 }));
 
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
+
 describe("Course Service Integration Tests", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await writeJSONFile(coursesFilePath, [testCourse1, testCourse2]);
   });
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT}`);
       server.close();
     }
   });
@@ -116,7 +122,7 @@ describe("Course Service Integration Tests", () => {
       await courseService.deleteCourseById(courseId);
 
       const courses = await courseService.getAllCourses();
-      expect(courses).toHaveLength(2);
+      expect(courses).toHaveLength(1);
     });
 
     it("should do nothing if trying to delete a non-existent course", async () => {

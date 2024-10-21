@@ -32,6 +32,11 @@ jest.mock("../../utils/error", () => ({
   }),
 }));
 
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
+
 describe("Module Service Integration Tests", () => {
   beforeEach(async () => {
     await writeJSONFile(coursesFilePath, [testCourse1, testCourse2]);
@@ -46,6 +51,7 @@ describe("Module Service Integration Tests", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT}`);
       server.close();
     }
   });

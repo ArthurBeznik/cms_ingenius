@@ -14,7 +14,7 @@ import {
   updateCourseById,
 } from "../../services/course.service";
 import createError from "../../utils/error";
-import { FILE_PATHS } from "../../config/config";
+import { FILE_PATHS, PORT } from "../../config/config";
 import { server } from "../../app";
 
 jest.mock("../../utils/fileUtils", () => ({
@@ -35,6 +35,11 @@ jest.mock("../../utils/error", () => ({
     return error;
   }),
 }));
+
+beforeAll(() => {
+  process.env.PORT = `${Math.floor(Math.random() * 1000) + 3000}`;
+  console.log(`Setting server on port ${process.env.PORT}`);
+});
 
 describe("ModuleService", () => {
   const mockModules: Module[] = [
@@ -85,6 +90,7 @@ describe("ModuleService", () => {
 
   afterAll(() => {
     if (server) {
+      console.log(`Closing server on port ${process.env.PORT || PORT}`);
       server.close();
     }
   });
