@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a **Course Management System (CMS)** backend built with **TypeScript** and **Node.js**, using JSON files for data persistence. The system handles course data management with endpoints for managing **courses**, **modules**, and **lessons**. The project is structured for scalability and maintainability, with features such as error handling, logging, validation, and testing.
+This project is a **Course Management System (CMS)** backend built with **TypeScript** and **Node.js**, using JSON files for data persistence. The system handles course data management with endpoints for managing **courses**, **modules**, and **lessons**.
 
 ## Table of Contents
 
@@ -11,6 +11,7 @@ This project is a **Course Management System (CMS)** backend built with **TypeSc
 - [Installation](#installation)
 - [Setup](#setup)
 - [Running the Application](#running-the-application)
+- [Docker Setup](#docker-setup)
 - [Project Structure](#project-structure)
 - [API Documentation](#api-documentation)
 - [Error Handling](#error-handling)
@@ -18,9 +19,7 @@ This project is a **Course Management System (CMS)** backend built with **TypeSc
 - [Input Validation](#input-validation)
 - [Testing](#testing)
 - [Data Persistence](#data-persistence)
-- [Bonus Features](#bonus-features)
 - [Configuration](#configuration)
-- [Docker Setup](#docker-setup)
 - [Troubleshooting](#troubleshooting)
 
 ## Project Objectives
@@ -36,8 +35,8 @@ This project is a **Course Management System (CMS)** backend built with **TypeSc
 
 Before setting up the project, ensure you have the following installed:
 
-- **Node.js** (v14+)
-- **npm** (or **yarn**)
+- **Node.js**
+- **npm**
 - **Docker** and **Docker Compose** (optional, for containerization)
 
 ## Installation
@@ -50,21 +49,28 @@ Before setting up the project, ensure you have the following installed:
    ```
 
 2. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
 ## Setup
 
-1. **Configuration**
-   The project uses a `config.ts` file located in `src/config` for environment settings (e.g., API version, port). You can modify this file as needed.
+1. **Configure the Application**
+
+   The project uses a `config.ts` file located in `src/config` to manage environment variables. Update the configuration to set key variables like `PORT` and `BASE_URL`. The file also defines paths to the JSON data files for courses, modules, and lessons.
+
+   Modify the `config.ts` file as needed for your environment.
 
 2. **Sample Data**
-   Initial data for courses, modules, and lessons is stored in JSON files located in `data/`. Modify these JSON files (`courses.json`, `modules.json`, `lessons.json`) to seed the system with initial data.
+
+   Initial data for courses, modules, and lessons is stored in JSON files located in `data/`. Modify these files (`courses.json`, `modules.json`, `lessons.json`) to seed the system with initial data.
 
 ## Running the Application
 
-1. **Starting in Development Mode**
+### Running Locally
+
+1. **Start the Application in Development Mode**
 
    ```bash
    npm run dev
@@ -72,10 +78,51 @@ Before setting up the project, ensure you have the following installed:
 
    By default, the application will be accessible at `http://localhost:3000`.
 
-2. **Starting in Production Mode**
+2. **Start the Application in Production Mode**
+
+   Build and start the app in production mode:
+
    ```bash
    npm run build
    npm start
+   ```
+
+### Docker Setup
+
+The project includes separate Docker configurations for **development** and **production**. You can use the appropriate `docker-compose` file for your environment.
+
+1. **Build the Docker Images**
+
+   To build the Docker images for both environments, use:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml build   # For development
+   docker-compose -f docker-compose.prod.yml build  # For production
+   ```
+
+2. **Run the Docker Containers**
+
+   - **Development Mode:**
+
+     ```bash
+     docker-compose -f docker-compose.dev.yml up
+     ```
+
+   - **Production Mode:**
+
+     ```bash
+     docker-compose -f docker-compose.prod.yml up
+     ```
+
+   The application will be accessible at `http://localhost:3000`.
+
+3. **Stop the Docker Containers**
+
+   To stop the running Docker containers:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml down   # Development
+   docker-compose -f docker-compose.prod.yml down  # Production
    ```
 
 ## Project Structure
@@ -134,28 +181,22 @@ http://localhost:3000/api-docs
 
 ## Error Handling
 
-The project includes global error-handling middleware. It captures all errors and sends a JSON response with the appropriate HTTP status code and error message.
+The project includes global error-handling middleware, which captures all errors and sends a JSON response with the appropriate HTTP status code and error message.
 
 ## Logging
 
-API requests and errors are logged using **Winston**. This ensures structured logging for easier debugging and monitoring.
+API requests and errors are logged using **Winston** for structured logging to assist with debugging and monitoring.
 
 ## Input Validation
 
-Input data is validated using **Joi**. All API requests are checked for valid input before processing, ensuring that the correct data is passed through.
+Input data is validated using **Joi** to ensure correct data is passed to API endpoints.
 
 ## Testing
 
-**Jest** is used for unit and integration tests. To run the tests:
+The project uses **Jest** for unit and integration testing. To run the tests:
 
 ```bash
 npm run test
-```
-
-To run tests in watch mode:
-
-```bash
-npm run test:watch
 ```
 
 ## Data Persistence
@@ -167,34 +208,6 @@ Data is persisted in JSON files located in the `data/` directory:
 - `lessons.json`
 
 Efficient read/write operations are implemented to update these files.
-
-## Configuration
-
-The project uses a `config.ts` file located in `src/config` for managing environment-specific settings. This includes:
-
-- **PORT**: Port for the server (default: `3000`).
-- **API_VERSION**: Version of the API (default: `v1`).
-
-Modify `config.ts` as per your environment.
-
-## Docker Setup
-
-1. **Build the Docker Image**
-
-   ```bash
-   docker-compose build
-   ```
-
-2. **Run the Docker Container**
-
-   ```bash
-   docker-compose up
-   ```
-
-3. **Stop the Docker Container**
-   ```bash
-   docker-compose down
-   ```
 
 ## Troubleshooting
 

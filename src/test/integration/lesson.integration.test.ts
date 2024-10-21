@@ -8,7 +8,7 @@ import fs from "fs";
 import path from "path";
 import { Course } from "../../models/course";
 import { Module } from "../../models/module";
-import { FILE_PATHS } from "../../config";
+import { FILE_PATHS } from "../../config/config";
 
 const lessonsFilePath = FILE_PATHS.LESSONS_FILE_PATH;
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;

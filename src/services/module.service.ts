@@ -4,7 +4,7 @@ import { readJSONFile, writeJSONFile } from "../utils/fileUtils";
 import { Course } from "../models/course";
 import { getCourseById, updateCourseById } from "./course.service";
 import createError from "../utils/error";
-import { FILE_PATHS } from "../config";
+import { FILE_PATHS } from "../config/config";
 
 const modulesFilePath = FILE_PATHS.MODULES_FILE_PATH;
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;

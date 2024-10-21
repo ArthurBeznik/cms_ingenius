@@ -5,7 +5,7 @@ import { writeJSONFile, readJSONFile } from "../../utils/fileUtils";
 import fs from "fs";
 import path from "path";
 import { Course } from "../../models/course";
-import { FILE_PATHS } from "../../config";
+import { FILE_PATHS } from "../../config/config";
 import { Lesson } from "../../models/lesson";
 
 const lessonsFilePath = FILE_PATHS.LESSONS_FILE_PATH;

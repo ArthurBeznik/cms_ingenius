@@ -14,7 +14,7 @@ import {
 } from "../services/module.service";
 import { Module } from "../models/module";
 import createError from "../utils/error";
-import { FILE_PATHS } from "../config";
+import { FILE_PATHS } from "../config/config";
 
 const modulesFilePath = FILE_PATHS.MODULES_FILE_PATH;
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;

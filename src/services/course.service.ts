@@ -2,7 +2,7 @@ import { Course } from "../models/course";
 import { getLogger } from "../utils/logger";
 import { readJSONFile, writeJSONFile } from "../utils/fileUtils";
 import createError from "../utils/error";
-import { FILE_PATHS } from "../config";
+import { FILE_PATHS } from "../config/config";
 
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;
 

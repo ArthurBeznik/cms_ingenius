@@ -14,7 +14,7 @@ import {
   updateCourseById,
 } from "../../services/course.service";
 import createError from "../../utils/error";
-import { FILE_PATHS } from "../../config";
+import { FILE_PATHS } from "../../config/config";
 
 jest.mock("../../utils/fileUtils", () => ({
   readJSONFile: jest.fn(),

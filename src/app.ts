@@ -7,7 +7,7 @@ import moduleRoutes from "./routes/moduleRoutes";
 import swaggerUi from "swagger-ui-express";
 import unknownRoute from "./routes/errorRoutes";
 import swaggerSpec from "./swagger/swaggerDefinition";
-import { BASE_URL, PORT } from "./config";
+import { BASE_URL, PORT } from "./config/config";
 
 const logger = getLogger(__filename);
 

@@ -1,4 +1,4 @@
-import { FILE_PATHS } from "../../config";
+import { FILE_PATHS } from "../../config/config";
 import { Course } from "../../models/course";
 import { Lesson } from "../../models/lesson";
 import { Module } from "../../models/module";

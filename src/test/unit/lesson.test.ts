@@ -10,7 +10,7 @@ import { Course } from "../../models/course";
 import { Lesson } from "../../models/lesson";
 import { getCourseById, getAllCourses } from "../../services/course.service";
 import createError from "../../utils/error";
-import { FILE_PATHS } from "../../config";
+import { FILE_PATHS } from "../../config/config";
 import { Module } from "../../models/module";
 import {
   getAllModules,
