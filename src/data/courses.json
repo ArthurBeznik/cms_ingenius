@@ -1,151 +1,50 @@
 [
   {
-    "id": 1,
-    "title": "Advanced Web Dev",
-    "description": "Updated description.",
+    "id": 2,
+    "title": "Test Course 2",
+    "description": "Course 2 for testing",
     "modules": [
       {
-        "title": "HTML Basics",
+        "id": 2,
+        "title": "Module 2",
         "lessons": [
           {
-            "title": "Understanding HTML Structure",
-            "description": "Learn about HTML tags and document structure",
+            "id": 3,
+            "title": "Lesson 3",
+            "description": "Lesson 3for testing",
+            "content": [],
             "topics": [
-              "HTML tags",
-              "Document structure",
-              "Semantic HTML"
+              "Topic 1"
             ],
-            "content": [
-              {
-                "type": "text",
-                "data": "HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser."
-              },
-              {
-                "type": "video",
-                "data": "https://example.com/intro-to-html-video"
-              }
-            ]
+            "moduleId": 2
           },
           {
-            "title": "Working with Forms",
-            "description": "Create and style HTML forms",
+            "id": 4,
+            "title": "Lesson 4",
+            "description": "Lesson 4 for testing",
+            "content": [],
             "topics": [
-              "Form elements",
-              "Input types",
-              "Form validation"
+              "Topic 2"
             ],
-            "content": [
-              {
-                "type": "text",
-                "data": "HTML forms are used to collect user input. Learn how to create effective and accessible forms."
-              },
-              {
-                "type": "audio",
-                "data": "https://example.com/html-forms-audio"
-              }
-            ]
+            "moduleId": 2
           }
-        ]
-      },
-      {
-        "title": "CSS Fundamentals",
-        "lessons": [
-          {
-            "title": "CSS Selectors and Properties",
-            "description": "Master CSS selectors and common properties",
-            "topics": [
-              "Selectors",
-              "Box model",
-              "Colors and typography"
-            ],
-            "content": [
-              {
-                "type": "text",
-                "data": "CSS (Cascading Style Sheets) is used to style and layout web pages."
-              },
-              {
-                "type": "video",
-                "data": "https://example.com/css-selectors-video"
-              }
-            ]
-          }
-        ]
+        ],
+        "lessonsId": [
+          3,
+          4
+        ],
+        "courseId": 2
       }
     ],
-    "name": "Updated Course Name"
+    "modulesId": [
+      2
+    ]
   },
   {
-    "id": 2,
-    "title": "TEST",
-    "description": "TEST Learn the fundamentals of web development, covering HTML, CSS, and JavaScript.",
-    "modules": [
-      {
-        "title": "TESTHTML Basics",
-        "lessons": [
-          {
-            "title": "TESTUnderstanding HTML Structure",
-            "description": "TESTLearn about HTML tags and document structure",
-            "topics": [
-              "TESTHTML tags",
-              "Document structure",
-              "Semantic HTML"
-            ],
-            "content": [
-              {
-                "type": "text",
-                "data": "HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser."
-              },
-              {
-                "type": "video",
-                "data": "https://example.com/intro-to-html-video"
-              }
-            ]
-          },
-          {
-            "title": "TESTWorking with Forms",
-            "description": "Create and style HTML forms",
-            "topics": [
-              "Form elements",
-              "Input types",
-              "Form validation"
-            ],
-            "content": [
-              {
-                "type": "text",
-                "data": "HTML forms are used to collect user input. Learn how to create effective and accessible forms."
-              },
-              {
-                "type": "audio",
-                "data": "https://example.com/html-forms-audio"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "title": "TESTCSS Fundamentals",
-        "lessons": [
-          {
-            "title": "TESTCSS Selectors and Properties",
-            "description": "Master CSS selectors and common properties",
-            "topics": [
-              "Selectors",
-              "Box model",
-              "Colors and typography"
-            ],
-            "content": [
-              {
-                "type": "text",
-                "data": "CSS (Cascading Style Sheets) is used to style and layout web pages."
-              },
-              {
-                "type": "video",
-                "data": "https://example.com/css-selectors-video"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "id": 3,
+    "title": "Test Course",
+    "description": "This is a test course",
+    "modules": [],
+    "modulesId": []
   }
 ]

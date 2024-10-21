@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
+    "test:course": "jest --coverage src/test/unit/course.test.ts",
+    "test:module": "jest --coverage src/test/unit/module.test.ts",
+    "test:lesson": "jest --coverage src/test/unit/lesson.test.ts",
+    "test:int-course": "jest --coverage src/test/integration/course.integration.test.ts",
+    "test:int-module": "jest --coverage src/test/integration/module.integration.test.ts",
+    "test:int-lesson": "jest --coverage src/test/integration/lesson.integration.test.ts",
     "dev": "ts-node-dev --respawn src/app.ts",
     "build": "tsc",
     "start": "node dist/app.js"
@@ -15,13 +21,19 @@
   "dependencies": {
     "express": "^4.21.1",
     "joi": "^17.13.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.15.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.5",
+    "@types/supertest": "^6.0.2",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "jest": "^29.7.0",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

@@ -4,18 +4,27 @@ import {
   createCourse,
   updateCourse,
   getCourse,
-} from "../controllers/courseController";
-import { validateCourse } from "../middlewares/courseValidator";
+  deleteCourse,
+} from "../controllers/course.controller";
+import {
+  courseCreateSchema,
+  courseUpdateSchema,
+} from "../validators/courseSchemas";
+import validateRequest from "../middlewares/inputValidator";
 
 const router = express.Router();
 
 router.get("/courses", getAllCourses);
-router.get("/courses/:id", getCourse);
+router.get("/courses/:courseId", getCourse);
 
-router.post("/courses", createCourse);
-// router.post("/courses", validateCourse, createCourse);
+router.post("/courses", validateRequest(courseCreateSchema), createCourse);
 
-router.put("/courses/:id", updateCourse);
-// router.put('/courses/:id', validateCourse, updateCourse);
+router.put(
+  "/courses/:courseId",
+  validateRequest(courseUpdateSchema),
+  updateCourse
+);
+
+router.delete("/courses/:courseId", deleteCourse);
 
 export default router;

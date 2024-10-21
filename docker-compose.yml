@@ -6,5 +6,7 @@ services:
     volumes:
       - .:/app
     environment:
-      - NODE_ENV=development
+      # - NODE_ENV=development
+      - NODE_ENV=production
+    # command: npm start
     command: npm run dev
