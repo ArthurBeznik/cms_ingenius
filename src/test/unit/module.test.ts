@@ -15,6 +15,7 @@ import {
 } from "../../services/course.service";
 import createError from "../../utils/error";
 import { FILE_PATHS } from "../../config/config";
+import { server } from "../../app";
 
 jest.mock("../../utils/fileUtils", () => ({
   readJSONFile: jest.fn(),
@@ -79,7 +80,13 @@ describe("ModuleService", () => {
   ];
 
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear mocks before each test
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    if (server) {
+      server.close();
+    }
   });
 
   // getAllModules tests

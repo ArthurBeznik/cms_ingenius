@@ -9,78 +9,21 @@ import path from "path";
 import { Course } from "../../models/course";
 import { Module } from "../../models/module";
 import { FILE_PATHS } from "../../config/config";
+import {
+  testCourse1,
+  testCourse2,
+  testModule1,
+  testModule2,
+  testLesson1,
+  testLesson2,
+  testLesson3,
+  testLesson4,
+} from "../testData";
+import { server } from "../../app";
 
 const lessonsFilePath = FILE_PATHS.LESSONS_FILE_PATH;
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;
 const modulesFilePath = FILE_PATHS.MODULES_FILE_PATH;
-
-const testLesson1: Lesson = {
-  id: 1,
-  title: "Lesson 1",
-  description: "Lesson for testing",
-  content: [],
-  topics: ["Topic 1"],
-  moduleId: 1,
-};
-
-const testLesson2: Lesson = {
-  id: 2,
-  title: "Lesson 2",
-  description: "Lesson 2 for testing",
-  content: [],
-  topics: ["Topic 2"],
-  moduleId: 1,
-};
-
-const testLesson3: Lesson = {
-  id: 3,
-  title: "Lesson 3",
-  description: "Lesson 3for testing",
-  content: [],
-  topics: ["Topic 1"],
-  moduleId: 2,
-};
-
-const testLesson4: Lesson = {
-  id: 4,
-  title: "Lesson 4",
-  description: "Lesson 4 for testing",
-  content: [],
-  topics: ["Topic 2"],
-  moduleId: 2,
-};
-
-const testModule1: Module = {
-  id: 1,
-  title: "Module 1",
-  lessons: [testLesson1, testLesson2],
-  lessonsId: [testLesson1.id, testLesson2.id],
-  courseId: 1,
-};
-
-const testModule2: Module = {
-  id: 2,
-  title: "Module 2",
-  lessons: [testLesson3, testLesson4],
-  lessonsId: [testLesson3.id, testLesson4.id],
-  courseId: 2,
-};
-
-const testCourse1: Course = {
-  id: 1,
-  title: "Test Course 1",
-  description: "Course 1 for testing",
-  modules: [testModule1],
-  modulesId: [testModule1.id],
-};
-
-const testCourse2: Course = {
-  id: 2,
-  title: "Test Course 2",
-  description: "Course 2 for testing",
-  modules: [testModule2],
-  modulesId: [testModule2.id],
-};
 
 jest.mock("../../utils/error", () => ({
   __esModule: true,
@@ -93,7 +36,6 @@ jest.mock("../../utils/error", () => ({
 
 describe("Lesson Service Integration Tests", () => {
   beforeEach(async () => {
-    // Initialize the courses, modules, and lessons JSON files with predefined data
     await writeJSONFile(coursesFilePath, [testCourse1, testCourse2]);
     await writeJSONFile(modulesFilePath, [testModule1, testModule2]);
     await writeJSONFile(lessonsFilePath, [
@@ -104,11 +46,10 @@ describe("Lesson Service Integration Tests", () => {
     ]);
   });
 
-  afterEach(() => {
-    // Optionally clean up the files after each test
-    // fs.unlinkSync(lessonsFilePath);
-    // fs.unlinkSync(modulesFilePath);
-    // fs.unlinkSync(coursesFilePath);
+  afterAll(() => {
+    if (server) {
+      server.close();
+    }
   });
 
   describe("getAllLessons", () => {

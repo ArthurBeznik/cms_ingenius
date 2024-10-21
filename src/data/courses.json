@@ -1,5 +1,46 @@
 [
   {
+    "id": 1,
+    "title": "Test Course 1",
+    "description": "Course 1 for testing",
+    "modules": [
+      {
+        "id": 1,
+        "title": "Module 1",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Lesson 1",
+            "description": "Lesson for testing",
+            "content": [],
+            "topics": [
+              "Topic 1"
+            ],
+            "moduleId": 1
+          },
+          {
+            "id": 2,
+            "title": "Lesson 2",
+            "description": "Lesson 2 for testing",
+            "content": [],
+            "topics": [
+              "Topic 2"
+            ],
+            "moduleId": 1
+          }
+        ],
+        "lessonsId": [
+          1,
+          2
+        ],
+        "courseId": 1
+      }
+    ],
+    "modulesId": [
+      1
+    ]
+  },
+  {
     "id": 2,
     "title": "Test Course 2",
     "description": "Course 2 for testing",
@@ -39,12 +80,5 @@
     "modulesId": [
       2
     ]
-  },
-  {
-    "id": 3,
-    "title": "Test Course",
-    "description": "This is a test course",
-    "modules": [],
-    "modulesId": []
   }
 ]

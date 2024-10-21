@@ -8,8 +8,8 @@ import {
 import { readJSONFile, writeJSONFile } from "../../utils/fileUtils";
 import createError from "../../utils/error";
 import { Course } from "../../models/course";
+import { server } from "../../app";
 
-// Mocks
 jest.mock("../../utils/fileUtils", () => ({
   readJSONFile: jest.fn(),
   writeJSONFile: jest.fn(),
@@ -44,6 +44,12 @@ describe("CourseService", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    if (server) {
+      server.close();
+    }
   });
 
   // getAllCourses tests

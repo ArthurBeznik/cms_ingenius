@@ -7,80 +7,22 @@ import path from "path";
 import { Course } from "../../models/course";
 import { FILE_PATHS } from "../../config/config";
 import { Lesson } from "../../models/lesson";
+import {
+  testCourse1,
+  testCourse2,
+  testModule1,
+  testModule2,
+  testLesson1,
+  testLesson2,
+  testLesson3,
+  testLesson4,
+} from "../testData";
+import { server } from "../../app";
 
 const lessonsFilePath = FILE_PATHS.LESSONS_FILE_PATH;
 const modulesFilePath = FILE_PATHS.MODULES_FILE_PATH;
 const coursesFilePath = FILE_PATHS.COURSES_FILE_PATH;
 
-const testLesson1: Lesson = {
-  id: 1,
-  title: "Lesson 1",
-  description: "Lesson for testing",
-  content: [],
-  topics: ["Topic 1"],
-  moduleId: 1,
-};
-
-const testLesson2: Lesson = {
-  id: 2,
-  title: "Lesson 2",
-  description: "Lesson 2 for testing",
-  content: [],
-  topics: ["Topic 2"],
-  moduleId: 1,
-};
-
-const testLesson3: Lesson = {
-  id: 3,
-  title: "Lesson 3",
-  description: "Lesson 3 for testing",
-  content: [],
-  topics: ["Topic 1"],
-  moduleId: 2,
-};
-
-const testLesson4: Lesson = {
-  id: 4,
-  title: "Lesson 4",
-  description: "Lesson 4 for testing",
-  content: [],
-  topics: ["Topic 2"],
-  moduleId: 2,
-};
-
-const testModule1: Module = {
-  id: 1,
-  title: "Module 1",
-  lessons: [testLesson1, testLesson2],
-  lessonsId: [testLesson1.id, testLesson2.id],
-  courseId: 1,
-};
-
-const testModule2: Module = {
-  id: 2,
-  title: "Module 2",
-  lessons: [testLesson3, testLesson4],
-  lessonsId: [testLesson3.id, testLesson4.id],
-  courseId: 2,
-};
-
-const testCourse1: Course = {
-  id: 1,
-  title: "Test Course 1",
-  description: "Course 1 for testing",
-  modules: [testModule1],
-  modulesId: [testModule1.id],
-};
-
-const testCourse2: Course = {
-  id: 2,
-  title: "Test Course 2",
-  description: "Course 2 for testing",
-  modules: [testModule2],
-  modulesId: [testModule2.id],
-};
-
-// Mock error creation
 jest.mock("../../utils/error", () => ({
   __esModule: true,
   default: jest.fn().mockImplementation((message, statusCode) => {
@@ -92,7 +34,6 @@ jest.mock("../../utils/error", () => ({
 
 describe("Module Service Integration Tests", () => {
   beforeEach(async () => {
-    // Initialize the courses, modules, and lessons JSON files with predefined data
     await writeJSONFile(coursesFilePath, [testCourse1, testCourse2]);
     await writeJSONFile(modulesFilePath, [testModule1, testModule2]);
     await writeJSONFile(lessonsFilePath, [
@@ -103,10 +44,10 @@ describe("Module Service Integration Tests", () => {
     ]);
   });
 
-  afterEach(() => {
-    // Optionally clean up the files after each test if needed
-    // fs.unlinkSync(modulesFilePath);
-    // fs.unlinkSync(coursesFilePath);
+  afterAll(() => {
+    if (server) {
+      server.close();
+    }
   });
 
   describe("getAllModules", () => {
@@ -161,12 +102,10 @@ describe("Module Service Integration Tests", () => {
         testCourse1.id
       );
 
-      // Verifying the added module
       expect(addedModule).toEqual(expect.objectContaining(newModuleData));
 
-      // Verify the module exists when fetching all modules for the course
       const modules = await moduleService.getAllModules(testCourse1.id);
-      expect(modules).toHaveLength(2); // Now should include 2 modules
+      expect(modules).toHaveLength(2);
       expect(modules[1].title).toBe("New Module");
     });
   });
@@ -184,7 +123,6 @@ describe("Module Service Integration Tests", () => {
       );
       expect(updatedModule?.title).toBe("Updated Module");
 
-      // Verify the module is updated when fetching by ID
       const module = await moduleService.getModuleById(
         testCourse1.id,
         testModule1.id
@@ -216,9 +154,8 @@ describe("Module Service Integration Tests", () => {
     it("should delete a module successfully", async () => {
       await moduleService.deleteModuleById(testCourse1.id, testModule1.id);
 
-      // Verify the module no longer exists in the course
       const modules = await moduleService.getAllModules(testCourse1.id);
-      expect(modules).toHaveLength(0); // After deletion, no modules should remain
+      expect(modules).toHaveLength(0);
     });
 
     it("should throw an error if the module to delete is not found", async () => {

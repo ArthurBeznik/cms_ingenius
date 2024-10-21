@@ -17,6 +17,7 @@ import {
   getModuleById,
   updateModuleById,
 } from "../../services/module.service";
+import { server } from "../../app";
 
 jest.mock("../../utils/fileUtils", () => ({
   readJSONFile: jest.fn(),
@@ -119,6 +120,12 @@ describe("LessonService", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    if (server) {
+      server.close();
+    }
   });
 
   // getAllLessons tests
